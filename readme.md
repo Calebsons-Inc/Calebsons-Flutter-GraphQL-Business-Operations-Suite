@@ -20,12 +20,12 @@ A cross-platform business operations suite built with Flutter and GraphQL. Inclu
 ## Architecture
 ```mermaid
 flowchart TD
-    APP[Flutter App (Mobile/Web/Desktop)] --> GQL[GraphQL API]
-    GQL --> DB[Postgres]
+    APP[Flutter App - Mobile Web Desktop] --> GQL[GraphQL API]
+    GQL --> DB[Postgres Database]
     APP --> SQLITE[Local SQLite - Offline Cache]
     GQL --> SUBS[Realtime Subscriptions]
     SUBS --> APP
-    INFRA[GraphQL Host + Flutter Build Targets] -.-> GQL
+    INFRA[GraphQL Host and Flutter Build Targets] -.-> GQL
 ```
 
 ## Setup
