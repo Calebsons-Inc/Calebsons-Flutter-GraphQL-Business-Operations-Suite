@@ -26,7 +26,6 @@ flowchart TD
     GQL --> SUBS[Realtime Subscriptions]
     SUBS --> APP
     INFRA[GraphQL Host + Flutter Build Targets] -.-> GQL
-
 ```
 
 ## Setup
