@@ -1,0 +1,39 @@
+name: backend-ci
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "calebsons_flutter_graphql_business_operations_suite/backend/**"
+      - "calebsons_flutter_graphql_business_operations_suite/cicd/github_actions/backend_ci.yml"
+  pull_request:
+    paths:
+      - "calebsons_flutter_graphql_business_operations_suite/backend/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: calebsons_flutter_graphql_business_operations_suite
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Format check
+        run: dart format --output=none --set-exit-if-changed backend
+
+      - name: Analyze
+        run: dart analyze backend
+
+      - name: Run tests
+        run: |
+          if [ -d backend/test ]; then
+            dart test backend
+          else
+            echo "No backend/test directory; skipping dart test."
+          fi

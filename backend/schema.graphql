@@ -1,0 +1,38 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  getOrders: [Order!]!
+  getOrderById(id: ID!): Order
+  getInventory: [InventoryItem!]!
+}
+
+type Mutation {
+  updateOrderStatus(id: ID!, status: String!): Order
+}
+
+type Order {
+  id: ID!
+  customerName: String!
+  status: String!
+  total: Float!
+  createdAt: String!
+  items: [OrderItem!]!
+}
+
+type OrderItem {
+  sku: String!
+  name: String!
+  quantity: Int!
+  price: Float!
+}
+
+type InventoryItem {
+  id: ID!
+  name: String!
+  sku: String!
+  quantity: Int!
+  price: Float!
+}

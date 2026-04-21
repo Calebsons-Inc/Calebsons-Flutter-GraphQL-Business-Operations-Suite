@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ORD-1001",
+    "customerName": "Acme Industrial Supply",
+    "status": "SHIPPED",
+    "total": 4280.5,
+    "createdAt": "2026-04-12T14:02:00Z",
+    "items": [
+      {
+        "sku": "SKU-100",
+        "name": "Industrial Bearing Kit",
+        "quantity": 12,
+        "price": 220.0
+      },
+      {
+        "sku": "SKU-204",
+        "name": "Lubricant Drum 55gal",
+        "quantity": 2,
+        "price": 820.25
+      }
+    ]
+  },
+  {
+    "id": "ORD-1002",
+    "customerName": "Northside Manufacturing",
+    "status": "SHIPPED",
+    "total": 1899.99,
+    "createdAt": "2026-04-14T09:17:00Z",
+    "items": [
+      {
+        "sku": "SKU-310",
+        "name": "CNC Tooling Set",
+        "quantity": 1,
+        "price": 1899.99
+      }
+    ]
+  },
+  {
+    "id": "ORD-1003",
+    "customerName": "Harbor Freight Dynamics",
+    "status": "PROCESSING",
+    "total": 655.0,
+    "createdAt": "2026-04-18T18:45:00Z",
+    "items": [
+      {
+        "sku": "SKU-100",
+        "name": "Industrial Bearing Kit",
+        "quantity": 1,
+        "price": 220.0
+      },
+      {
+        "sku": "SKU-415",
+        "name": "Safety Glove Pack",
+        "quantity": 29,
+        "price": 15.0
+      }
+    ]
+  },
+  {
+    "id": "ORD-1004",
+    "customerName": "Vertex Aerospace",
+    "status": "DELIVERED",
+    "total": 12400.0,
+    "createdAt": "2026-04-02T11:00:00Z",
+    "items": [
+      {
+        "sku": "SKU-501",
+        "name": "Precision Gauge",
+        "quantity": 4,
+        "price": 3100.0
+      }
+    ]
+  }
+]

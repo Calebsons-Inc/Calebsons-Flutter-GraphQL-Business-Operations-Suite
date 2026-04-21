@@ -1,0 +1,9 @@
+[
+  { "id": "INV-100", "name": "Industrial Bearing Kit", "sku": "SKU-100", "quantity": 48, "price": 220.00 },
+  { "id": "INV-204", "name": "Lubricant Drum 55gal", "sku": "SKU-204", "quantity": 9, "price": 820.25 },
+  { "id": "INV-310", "name": "CNC Tooling Set", "sku": "SKU-310", "quantity": 3, "price": 1899.99 },
+  { "id": "INV-415", "name": "Safety Glove Pack", "sku": "SKU-415", "quantity": 420, "price": 15.00 },
+  { "id": "INV-501", "name": "Precision Gauge", "sku": "SKU-501", "quantity": 2, "price": 3100.00 },
+  { "id": "INV-620", "name": "Hydraulic Hose 10ft", "sku": "SKU-620", "quantity": 76, "price": 88.40 },
+  { "id": "INV-735", "name": "Pneumatic Regulator", "sku": "SKU-735", "quantity": 14, "price": 245.00 }
+]
