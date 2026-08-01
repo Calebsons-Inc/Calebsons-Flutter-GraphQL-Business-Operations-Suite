@@ -24,12 +24,15 @@ Content-Type: application/json
 
 See [`schema.graphql`](./schema.graphql).
 
-| Operation                        | Kind     |
-| -------------------------------- | -------- |
-| `getOrders`                      | Query    |
-| `getOrderById(id: ID!)`          | Query    |
-| `getInventory`                   | Query    |
-| `updateOrderStatus(id, status)`  | Mutation |
+| Operation                              | Kind     |
+| -------------------------------------- | -------- |
+| `getOrders(status: OrderStatus)`       | Query    |
+| `getOrderById(id: ID!)`                | Query    |
+| `getInventory`                         | Query    |
+| `updateOrderStatus(id, status)`        | Mutation |
+
+`OrderStatus` is `PENDING | PROCESSING | SHIPPED | DELIVERED`.
+`InventoryItem` exposes `lowStockThreshold` and derived `isLowStock`.
 
 ## Data
 

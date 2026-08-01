@@ -3,20 +3,38 @@ schema {
   mutation: Mutation
 }
 
+"""Lifecycle states for a business order."""
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+}
+
 type Query {
-  getOrders: [Order!]!
+  """
+  All orders, optionally filtered by status.
+  Omit `status` to return every order.
+  """
+  getOrders(status: OrderStatus): [Order!]!
+
   getOrderById(id: ID!): Order
+
+  """
+  Full inventory catalog. Low-stock signals live on each InventoryItem
+  (`isLowStock`, `lowStockThreshold`) so clients do not hard-code thresholds.
+  """
   getInventory: [InventoryItem!]!
 }
 
 type Mutation {
-  updateOrderStatus(id: ID!, status: String!): Order
+  updateOrderStatus(id: ID!, status: OrderStatus!): Order
 }
 
 type Order {
   id: ID!
   customerName: String!
-  status: String!
+  status: OrderStatus!
   total: Float!
   createdAt: String!
   items: [OrderItem!]!
@@ -35,4 +53,8 @@ type InventoryItem {
   sku: String!
   quantity: Int!
   price: Float!
+  """Quantity at or below which the SKU is considered low stock."""
+  lowStockThreshold: Int!
+  """True when quantity is less than or equal to lowStockThreshold."""
+  isLowStock: Boolean!
 }
