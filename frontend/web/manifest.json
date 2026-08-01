@@ -1,11 +1,11 @@
 {
-    "name": "Calebsons Flutter",
-    "short_name": "Calebsons",
+    "name": "Calebsons Flutter Business Operations Suite",
+    "short_name": "Calebsons Flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#F3F7F6",
     "theme_color": "#1F6F6A",
-    "description": "Calebsons Flutter business operations suite.",
+    "description": "Calebsons Flutter Business Operations Suite.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -12,7 +12,8 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 500));
 
-    expect(find.text('Sign in to the ops suite'), findsOneWidget);
+    expect(find.text('Business Operations Suite'), findsOneWidget);
+    expect(find.text('Sign in to manage orders and inventory'), findsOneWidget);
     expect(find.text(DemoAuth.email), findsWidgets);
     expect(find.text(DemoAuth.password), findsWidgets);
     expect(find.text('Dashboard'), findsNothing);

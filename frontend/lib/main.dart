@@ -111,7 +111,7 @@ class CalebsonsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Calebsons Flutter',
+      title: 'Calebsons Flutter Business Operations Suite',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(),
       home: const _AuthGate(),
@@ -271,21 +271,22 @@ class _BrandRail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Calebsons',
+            'Calebsons Flutter',
             style: GoogleFonts.fraunces(
-              fontSize: 28,
+              fontSize: 22,
               fontWeight: FontWeight.w600,
               color: AppColors.ink,
-              height: 1.05,
+              height: 1.1,
             ),
           ),
+          const SizedBox(height: 4),
           Text(
-            'Flutter',
+            'Business Operations Suite',
             style: GoogleFonts.manrope(
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: FontWeight.w700,
               color: AppColors.teal,
-              letterSpacing: 1.4,
+              height: 1.25,
             ),
           ),
           const SizedBox(height: 28),
@@ -333,21 +334,21 @@ class _MobileTopBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Calebsons',
+                    'Calebsons Flutter',
                     style: GoogleFonts.fraunces(
-                      fontSize: 22,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: AppColors.ink,
                       height: 1.1,
                     ),
                   ),
                   Text(
-                    'Flutter',
+                    'Business Operations Suite',
                     style: GoogleFonts.manrope(
                       fontSize: 11,
                       fontWeight: FontWeight.w700,
                       color: AppColors.teal,
-                      letterSpacing: 1.2,
+                      height: 1.2,
                     ),
                   ),
                 ],

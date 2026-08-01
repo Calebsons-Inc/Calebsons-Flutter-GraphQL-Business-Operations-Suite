@@ -94,29 +94,28 @@ class _AuthScreenState extends State<AuthScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Calebsons',
+                        'Calebsons Flutter',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.fraunces(
-                          fontSize: wide ? 42 : 36,
+                          fontSize: wide ? 40 : 32,
                           fontWeight: FontWeight.w600,
                           color: AppColors.ink,
                           height: 1.05,
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      const SizedBox(height: 8),
                       Text(
-                        'FLUTTER',
+                        'Business Operations Suite',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.manrope(
-                          fontSize: 13,
+                          fontSize: wide ? 16 : 14,
                           fontWeight: FontWeight.w700,
-                          letterSpacing: 2.4,
                           color: AppColors.teal,
                         ),
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        'Sign in to the ops suite',
+                        'Sign in to manage orders and inventory',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               color: AppColors.muted,
