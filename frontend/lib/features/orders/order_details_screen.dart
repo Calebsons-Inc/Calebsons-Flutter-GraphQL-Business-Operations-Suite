@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../graphql/mutations.dart';
 import '../../main.dart';
 import '../../models/order.dart';
+import '../../theme/app_theme.dart';
+import '../../widgets/app_chrome.dart';
 
 /// Detail view for a single order, with status update action.
 class OrderDetailsScreen extends StatefulWidget {
@@ -55,62 +57,151 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       ),
     );
 
-    return Scaffold(
-      appBar: AppBar(title: Text(order.id)),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Text(order.customerName,
-              style: Theme.of(context).textTheme.headlineSmall),
-          const SizedBox(height: 4),
-          Text('Placed ${order.createdAt}'),
-          const SizedBox(height: 16),
-          Row(
+    return AppBackdrop(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: Text(order.id),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_rounded),
+            onPressed: () => Navigator.of(context).maybePop(),
+          ),
+        ),
+        body: ContentWidth(
+          child: ListView(
             children: [
-              Text('Status: ${order.status}'),
-              const Spacer(),
-              if (_updating)
-                const SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                )
-              else
-                DropdownButton<String>(
-                  value: _statuses.contains(order.status)
-                      ? order.status
-                      : _statuses.first,
-                  items: [
-                    for (final s in _statuses)
-                      DropdownMenuItem(value: s, child: Text(s)),
-                  ],
-                  onChanged: (value) {
-                    if (value != null) _updateStatus(order, value);
-                  },
+              FadeIn(
+                child: Text(
+                  order.customerName,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
+              ),
+              const SizedBox(height: 6),
+              FadeIn(
+                delay: const Duration(milliseconds: 40),
+                child: Text(
+                  'Placed ${order.createdAt}',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: AppColors.muted,
+                      ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              FadeIn(
+                delay: const Duration(milliseconds: 80),
+                child: InteractiveRow(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Status',
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            const SizedBox(height: 8),
+                            StatusPill(status: order.status),
+                          ],
+                        ),
+                      ),
+                      if (_updating)
+                        const SizedBox(
+                          width: 22,
+                          height: 22,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      else
+                        DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: _statuses.contains(order.status)
+                                ? order.status
+                                : _statuses.first,
+                            borderRadius: BorderRadius.circular(12),
+                            items: [
+                              for (final s in _statuses)
+                                DropdownMenuItem(value: s, child: Text(s)),
+                            ],
+                            onChanged: (value) {
+                              if (value != null) _updateStatus(order, value);
+                            },
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 28),
+              FadeIn(
+                delay: const Duration(milliseconds: 120),
+                child: Text(
+                  'Line items',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              const SizedBox(height: 12),
+              for (var i = 0; i < order.items.length; i++) ...[
+                FadeIn(
+                  delay: Duration(milliseconds: 140 + (i * 40)),
+                  child: InteractiveRow(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                order.items[i].name,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              Text(
+                                '${order.items[i].sku} · qty ${order.items[i].quantity}',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          '\$${order.items[i].price.toStringAsFixed(2)}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                if (i != order.items.length - 1) const SizedBox(height: 10),
+              ],
+              const SizedBox(height: 28),
+              FadeIn(
+                delay: const Duration(milliseconds: 220),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                    vertical: 16,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.mist,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      Text(
+                        '\$${order.total.toStringAsFixed(2)}',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
             ],
           ),
-          const Divider(height: 32),
-          Text('Line items',
-              style: Theme.of(context).textTheme.titleMedium),
-          for (final item in order.items)
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(item.name),
-              subtitle: Text('${item.sku} · qty ${item.quantity}'),
-              trailing: Text('\$${item.price.toStringAsFixed(2)}'),
-            ),
-          const Divider(height: 32),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text('Total',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              Text('\$${order.total.toStringAsFixed(2)}',
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

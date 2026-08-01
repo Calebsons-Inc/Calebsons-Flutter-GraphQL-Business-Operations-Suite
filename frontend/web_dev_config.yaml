@@ -1,0 +1,8 @@
+# Flutter web development server settings.
+# Used by `flutter run -d web-server` (and other web devices).
+# Keeps the frontend off port 8080 so it does not collide with the GraphQL backend.
+#
+# Docs: https://docs.flutter.dev/platform-integration/web/web-dev-config-file
+server:
+  host: "localhost"
+  port: 5050
